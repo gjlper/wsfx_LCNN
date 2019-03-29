@@ -11,7 +11,7 @@ class LightCNN:
 
     def lightcnn(self,input,index,softmax=True):
         with tf.name_scope("cnn"+str(index)):
-            B, L, D =
+            B, L, D = tf.get_shape(input)
             d = D / self.config.H
             split_x = tf.transpose(tf.reshape(input, shape=[B, L, d, self.config.H]), [3, 0, 2, 1])  #[H,B,d,L]
             output = tf.zeros_likes(split_x)
